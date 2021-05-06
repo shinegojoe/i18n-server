@@ -2,7 +2,7 @@ import { BaseSqliteModel, ISqlConfig } from './base.model'
 import SqliteHelper from '../helper/DBHelper/sqlliteHelper'
 
 const cfg: ISqlConfig = {
-    add: 'INSERT or IGNORE INTO project(name) VALUES ($name)',
+    add: 'INSERT or IGNORE INTO project(name, coverPhoto) VALUES ($name, $coverPhoto)',
     get: 'SELECT * from project WHERE id = $id',
     list: 'SELECT * from project',
     update: 'UPDATE project SET name = $name WHERE id = $id',

@@ -8,7 +8,6 @@ steps:
     commands:
       - npm install
       - npm run start:test
-      - node test.js
       - npm run test
 
   # - name: say-hello2

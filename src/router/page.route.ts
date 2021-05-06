@@ -1,27 +1,26 @@
 import express from 'express'
-import projectController from '../controller/project.controller'
+import pageController from '../controller/page.controller'
 const router = express.Router()
 
-/* ........ stock ........*/
-const projectString = '/project'
+const projectString = '/page'
 router.get(`${projectString}/:id`, (req, res, next)=> {
-    projectController.get(req, res, next)
+  pageController.get(req, res, next)
 })
 
 router.get(projectString, (req, res, next)=> {
-    projectController.list(req, res, next)
+  pageController.list(req, res, next)
 })
 
 router.post(projectString, (req, res, next)=> {
-    projectController.add(req, res, next)
+  pageController.add(req, res, next)
 })
 
 router.patch(projectString, (req, res, next) => {
-    projectController.update(req, res, next)
+  pageController.update(req, res, next)
 })
 
 router.delete(`${projectString}/:id`, (req, res, next)=> {
-    projectController.del(req, res, next)
+  pageController.del(req, res, next)
 })
 
 

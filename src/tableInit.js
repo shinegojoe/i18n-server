@@ -6,21 +6,22 @@ const dbInit = (dbPath) => {
   return db
 }
 
-const createProject = () => {
+const createProject = (db) => {
   const sql = `CREATE TABLE project (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    coverPhoto TEXT NOT NULL default 'default.jpg'
   );`
   const stmt = db.prepare(sql)
   const res = stmt.run()
   console.log('project table', res)
 }
 
-const createPage = () => {
+const createPage = (db) => {
   const sql = `CREATE TABLE page (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
     name TEXT NOT NULL,
-    projectId INTEGER NOT NULL
+    projectId INTEGER NOT NULL,
     FOREIGN KEY("projectId") REFERENCES "project"("id")
   );`
   const stmt = db.prepare(sql)
@@ -28,7 +29,7 @@ const createPage = () => {
   console.log('page table', res)
 }
 
-const createLang = () => {
+const createLang = (db) => {
   const sql = `CREATE TABLE language (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
     name TEXT NOT NULL
@@ -39,12 +40,13 @@ const createLang = () => {
 }
 
 
-const createRow = () => {
+const createRow = (db) => {
   const sql = `CREATE TABLE row (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
     text TEXT NOT NULL,
     langId INTEGER NOT NULL,
     pageId INTEGER NOT NULL,
+    sortId INTEGER NOT NULL,
     FOREIGN KEY("langId") REFERENCES "language"("id"),
     FOREIGN KEY("pageId") REFERENCES "page"("id")
 );`
@@ -53,7 +55,7 @@ const createRow = () => {
   console.log('row table', res)
 }
 
-const createProjectLang = () => {
+const createProjectLang = (db) => {
   const sql = `CREATE TABLE dividend (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
     projectId INTEGER NOT NULL,
