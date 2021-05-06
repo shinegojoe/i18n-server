@@ -1,3 +1,4 @@
+import { Request } from 'express'
 import { BaseSqliteModel, ISqlConfig } from './base.model'
 import SqliteHelper from '../helper/DBHelper/sqlliteHelper'
 
@@ -13,6 +14,10 @@ const cfg: ISqlConfig = {
 class ProjectModel extends BaseSqliteModel {
     constructor(sqliteHelper: SqliteHelper, cfg: ISqlConfig) {
         super(sqliteHelper, cfg)
+    }
+
+    async del(req: Request) {
+        // delete from projectLang
     }
 }
 

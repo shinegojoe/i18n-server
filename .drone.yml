@@ -13,7 +13,7 @@ steps:
       - npm run test
 
 
-  # - name: say-hello2
+  # - name: deploy-server
   #   image: node:latest
   #   commands:
   #     - bash test2.sh

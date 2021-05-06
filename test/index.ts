@@ -6,6 +6,7 @@ dotenv.config({
 })
 import { ProjectTester } from './apiTest.test/project.test'
 import { LanguageTester } from './apiTest.test/language.test'
+import { PageTester } from './apiTest.test/page.test'
 
 
 const dbPath: any = process.env['SQLITE_PATH']
@@ -17,5 +18,7 @@ describe('test start', ()=> {
   projectTester.run()
   const langTester = new LanguageTester('language', 'name')
   langTester.run()
+  const pageTester = new PageTester('page', 'name')
+  pageTester.run()
 })
 
