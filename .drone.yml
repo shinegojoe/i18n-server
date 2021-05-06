@@ -1,17 +1,17 @@
 kind: pipeline
-name: hello-world123
+name: i18n CI
 type: docker
 
 steps:
-  - name: say-hello
+  - name: server-test
     image: node:latest
     commands:
       - npm install
+      - node src/tableInit.js
       - npm run start:test
-
-  - name: run test
-    commands:
+      - sleep 10
       - npm run test
+
 
   # - name: say-hello2
   #   image: node:latest

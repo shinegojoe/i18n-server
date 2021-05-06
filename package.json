@@ -7,7 +7,7 @@
     "start:dev": "NODE_ENV=development ts-node ./src/index.ts",
     "start": "npm run build && NODE_ENV=production node ./dist/index.js",
     "build": "tsc",
-    "start:test": "NODE_ENV=development ts-node ./src/index.ts &",
+    "start:test": "NODE_ENV=development ts-node ./src/index.ts",
     "test": "mocha -r dotenv/config --require ts-node/register test/*.ts",
     "wp": "webpack && bash ./deploy/deploy.sh"
   },
