@@ -1,4 +1,5 @@
 const sqlite3 = require('better-sqlite3')
+var path = require('path')
 
 
 const dbInit = (dbPath) => {
@@ -70,7 +71,9 @@ const createProjectLang = (db) => {
 
 
 const main = () => {
-  const dbPath = '../testDB.db'
+  const root = path.resolve(__dirname).replace('/src', '')
+
+  const dbPath = `${root}/testDB.db`
   const db = dbInit(dbPath)
   const begin = db.prepare('BEGIN')
   const commit  = db.prepare('COMMIT')
