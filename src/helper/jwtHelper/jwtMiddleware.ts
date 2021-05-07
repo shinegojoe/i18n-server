@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { verifyJWT, Payload } from './jwtHelper'
-import { LoginReq } from '../../IAPI/ILogin'
+// import { LoginReq } from '../../IAPI/ILogin'
 
 
 const verifyEmail = (email: string, decoded: Payload): void => {
@@ -20,7 +20,7 @@ export const jwtMiddleware = async(req: Request, res: Response, next: NextFuncti
       const id = req.params.id
       console.log('id', id)
     } else {
-      const body = req.body as LoginReq
+      const body = req.body
       const decoded = verifyJWT(token)
       console.log('decoded', decoded)
       verifyEmail(body.email, decoded)

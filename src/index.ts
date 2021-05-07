@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config({
   path: path.resolve(`./${process.env.NODE_ENV}.env`)
 })
+const port: any = process.env['PORT']
 
 import express from 'express'
 
@@ -38,8 +39,8 @@ app.use(errorHandler)
 // console.log(logger)
 
 
-app.listen(3002, () => {
-  fileLogger.info('http server is running at port 3002.');
+app.listen(port, () => {
+  fileLogger.info(`http server is running at port ${port}.`);
 
 })
 // // const ws = new WSServer(8080)

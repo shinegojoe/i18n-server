@@ -15,10 +15,6 @@ class ProjectModel extends BaseSqliteModel {
     constructor(sqliteHelper: SqliteHelper, cfg: ISqlConfig) {
         super(sqliteHelper, cfg)
     }
-
-    async del(req: Request) {
-        // delete from projectLang
-    }
 }
 
 export { ProjectModel, cfg }

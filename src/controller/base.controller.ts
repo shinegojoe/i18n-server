@@ -16,83 +16,104 @@ interface IBaseController {
 }
 
 class BaseController implements IBaseController {
-  model: IBaseModel
-  respLayer: IResp
-  addLayer: Add
-  getLayer: Get
-  listLayer: List
-  updateLayer: Update
-  delLayer: Del
-  constructor(model: IBaseModel) {
+  model: any
+  constructor(model: any) {
     this.model = model
-    this.respLayer = new BaseResp()
-    this.addLayer = new Add()
-    this.getLayer = new Get()
-    this.listLayer = new List()
-    this.updateLayer = new Update()
-    this.delLayer = new Del()
   }
-  
-  async add(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await this.model.add(req)
-      this.respLayer = this.addLayer
-      const resp = this.respLayer.resp(data)
-      res.status(httpStatus.OK).json(resp)
-    } catch(e) {
-      next(e)
-    }
+  add(req: Request, res: Response, next: NextFunction) {
 
   }
-  async list(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await this.model.list(req)
-      this.respLayer = this.listLayer
-      const resp = this.respLayer.resp(data)
-      res.status(httpStatus.OK).json(resp)
-    } catch(e) {
-      next(e)
-    }
+  list(req: Request, res: Response, next: NextFunction) {
+
   }
+  get(req: Request, res: Response, next: NextFunction) {
 
-  async get(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await this.model.get(req)
-      this.respLayer = this.getLayer
-      const resp = this.respLayer.resp(data)
-      res.status(httpStatus.OK).json(resp)
-    } catch(e) {
-      next(e)
-    }
   }
+  update(req: Request, res: Response, next: NextFunction) {
 
-  async update(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await this.model.update(req)
-      this.respLayer = this.updateLayer
-      const resp = this.respLayer.resp(data)
-      console.log('item controller', data)
-      res.status(httpStatus.OK).json(resp)
-    } catch(e) {
-      console.log('item controller eee', e)
-
-      next(e)
-    }
   }
+  del(req: Request, res: Response, next: NextFunction) {
 
-  async del(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await this.model.del(req)
-      this.respLayer = this.delLayer
-      const resp = this.respLayer.resp(data)
-
-      res.status(httpStatus.OK).json(resp)
-    } catch(e) {
-      next(e)
-    }
   }
-
 }
+
+// class BaseController implements IBaseController {
+//   model: IBaseModel
+//   respLayer: IResp
+//   addLayer: Add
+//   getLayer: Get
+//   listLayer: List
+//   updateLayer: Update
+//   delLayer: Del
+//   constructor(model: IBaseModel) {
+//     this.model = model
+//     this.respLayer = new BaseResp()
+//     this.addLayer = new Add()
+//     this.getLayer = new Get()
+//     this.listLayer = new List()
+//     this.updateLayer = new Update()
+//     this.delLayer = new Del()
+//   }
+  
+//   async add(req: Request, res: Response, next: NextFunction) {
+//     try {
+//       const data = await this.model.add(req)
+//       this.respLayer = this.addLayer
+//       const resp = this.respLayer.resp(data)
+//       res.status(httpStatus.OK).json(resp)
+//     } catch(e) {
+//       next(e)
+//     }
+
+//   }
+//   async list(req: Request, res: Response, next: NextFunction) {
+//     try {
+//       const data = await this.model.list(req)
+//       this.respLayer = this.listLayer
+//       const resp = this.respLayer.resp(data)
+//       res.status(httpStatus.OK).json(resp)
+//     } catch(e) {
+//       next(e)
+//     }
+//   }
+
+//   async get(req: Request, res: Response, next: NextFunction) {
+//     try {
+//       const data = await this.model.get(req)
+//       this.respLayer = this.getLayer
+//       const resp = this.respLayer.resp(data)
+//       res.status(httpStatus.OK).json(resp)
+//     } catch(e) {
+//       next(e)
+//     }
+//   }
+
+//   async update(req: Request, res: Response, next: NextFunction) {
+//     try {
+//       const data = await this.model.update(req)
+//       this.respLayer = this.updateLayer
+//       const resp = this.respLayer.resp(data)
+//       console.log('item controller', data)
+//       res.status(httpStatus.OK).json(resp)
+//     } catch(e) {
+//       console.log('item controller eee', e)
+
+//       next(e)
+//     }
+//   }
+
+//   async del(req: Request, res: Response, next: NextFunction) {
+//     try {
+//       const data = await this.model.del(req)
+//       this.respLayer = this.delLayer
+//       const resp = this.respLayer.resp(data)
+
+//       res.status(httpStatus.OK).json(resp)
+//     } catch(e) {
+//       next(e)
+//     }
+//   }
+// }
 
 export { IBaseController, BaseController }
 

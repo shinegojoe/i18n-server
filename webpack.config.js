@@ -6,12 +6,14 @@ module.exports = (env, argv) => {
 
   // 取得環境變數檔的內容，並依照 mode 來切換模式
   // const params = dotenv.config({ path: path.resolve(__dirname, `./src/environments/${argv.mode}.env`) }).parsed;
-  const params = dotenv.config({ path: path.resolve(__dirname, `.env`) }).parsed;
+  // const params = dotenv.config({ path: path.resolve(__dirname, `.env`) }).parsed;
+  const params = dotenv.config({ path: path.resolve(__dirname, `production.env`) }).parsed;
+
 
   // 將環境變數的設置寫入 Object 中，以方便後續調用
   const processEnv = {};
   Object.keys(params).forEach(key => processEnv[`process.env.${key}`] = JSON.stringify(params[key]));
-
+  console.log('processEnv', processEnv)
   return {
     entry: './src/index.ts',               // 載入點
     target: 'node',                        // 使用 node
