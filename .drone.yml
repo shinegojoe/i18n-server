@@ -16,6 +16,6 @@ steps:
     image: node:latest
     commands:
       # - bash test2.sh
-      - npm install express
+      - npm install axios
       - node test.js
   
