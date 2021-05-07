@@ -3,20 +3,19 @@ name: i18n CI
 type: docker
 
 steps:
-  - name: server-test
-    image: node:latest
-    commands:
-      - npm install
-      - node src/tableInit.js
-      - npm run start:test
-      - sleep 10
-      - npm run test
-
-
-  # - name: deploy-server
+  # - name: server-test
   #   image: node:latest
   #   commands:
-  #     - bash test2.sh
   #     - npm install
-  #     - npm run standard-test
-  #
+  #     - node src/tableInit.js
+  #     - npm run start:test
+  #     - sleep 10
+  #     - npm run test
+
+  - name: deploy-server
+    image: node:latest
+    commands:
+      # - bash test2.sh
+      - npm install express
+      - node test.js
+  
