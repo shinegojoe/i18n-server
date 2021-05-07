@@ -16,8 +16,8 @@ RUN apt install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get install -y nodejs
-RUN apt install vim
-RUN apt-get install build-essential
+RUN apt install vim -y
+RUN apt-get install build-essential -y
 RUN npm install pm2 -g
 RUN npm install
 
