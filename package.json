@@ -8,9 +8,11 @@
     "start": "npm run build && NODE_ENV=production node ./dist/index.js",
     "build": "tsc",
     "b2": "npm run build && NODE_ENV=production node ./dist/index.js",
+    "b4": "npm run build && NODE_ENV=production pm2 start --name i18n-server ./dist/index.js",
+    "restart": "npm run build && NODE_ENV=production pm2 restart i18n-server",
+
     "start:test": "NODE_ENV=development ts-node ./src/index.ts &",
     "test": "mocha -r dotenv/config --require ts-node/register test/*.ts",
-    "wp": "webpack && bash ./deploy/deploy.sh",
     "webpack": "webpack --mode=production"
   },
   "author": "",
@@ -19,7 +21,7 @@
     "@types/node": "^14.14.34",
     "@types/sqlite3": "^3.1.7",
     "axios": "^0.21.1",
-    "better-sqlite3": "^7.1.4",
+    "better-sqlite3": "^7.3.1",
     "chai": "^4.3.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -31,6 +33,7 @@
     "mocha": "^8.3.2",
     "mongodb": "^3.6.4",
     "net-keepalive": "^2.0.1",
+    "sqlite3": "^5.0.2",
     "ts-node": "^9.1.1",
     "winston": "^3.3.3"
   },

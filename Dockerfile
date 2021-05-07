@@ -13,6 +13,8 @@ RUN apt install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get install -y nodejs
+RUN npm install pm2 -g
+
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
@@ -22,5 +24,5 @@ EXPOSE 5000
 
 # Run app.py when the container launches
 # CMD ["python3 main.py"]
-CMD ["npm install", "npm run start:dev"]
+CMD ["npm install", "npm run b2"]
 
