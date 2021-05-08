@@ -17,6 +17,8 @@ steps:
   #   commands:
   #     # - bash test2.sh
   #     - npm install axios
-  #     - node test.js
+  #     - npm run build
+  #     - tar cvf dist.tar dist
+  #     - node deploy.js
 
   

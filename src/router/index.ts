@@ -13,7 +13,8 @@ router.use('/', project)
 // router.use('/', lang)
 // router.use('/', page)
 router.get('/ttt', (req, res, next)=> {
-    res.send('ok')
+    console.log('get ttt')
+    res.send('one okok rock')
 })
 
 
@@ -27,7 +28,7 @@ const run = () => {
         //     console.log(`stderr: ${stderr}`);
         //     return;
         // }
-        console.log(`stdout: ${stdout}`);
+        console.log(`run: ${stdout}`);
      });
 }
 
@@ -41,7 +42,7 @@ const run2 = () => {
         //     console.log(`stderr: ${stderr}`);
         //     return;
         // }
-        console.log(`stdout: ${stdout}`);
+        console.log(`run2: ${stdout}`);
      });
 }
 
