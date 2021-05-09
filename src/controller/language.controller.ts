@@ -1,4 +1,4 @@
-import SqliteHelper from '../helper/DBHelper/sqlliteHelper'
+import SqliteHelper  from '../helper/DBHelper/sqlliteHelper'
 import { BaseController } from './base.controller'
 import { LanguageModel, cfg } from '../model/language.model'
 

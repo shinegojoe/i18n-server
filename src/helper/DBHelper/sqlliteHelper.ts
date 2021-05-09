@@ -1,10 +1,10 @@
 import IDBHelper from './IDBHelper'
 import { IQueryObj, IQueryResult, QueryResult } from './IQueryObj'
 // var sqlite3 = require('sqlite3').verbose();
-// const sqlite3 = require('better-sqlite3')
-var sqlite3 = require('sqlite3').verbose()
+const sqlite3 = require('better-sqlite3')
+// var sqlite3 = require('sqlite3').verbose()
 
-interface ISqliteResp {
+export interface ISqliteResp {
     changes: number
     lastInsertRowid: number
 }
@@ -107,7 +107,7 @@ class SqlLiteHelper implements IDBHelper {
             const stmt = db.prepare(sql)
             const res = stmt.get(query.query)
             if (res === undefined) {
-                return new QueryResult({})
+                return undefined
             } else {
                 const stmtDel = db.prepare(delSql)
                 const resDel = stmtDel.run({ id: res.id }) as ISqliteResp

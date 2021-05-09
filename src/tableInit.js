@@ -57,7 +57,7 @@ const createRow = (db) => {
 }
 
 const createProjectLang = (db) => {
-  const sql = `CREATE TABLE dividend (
+  const sql = `CREATE TABLE projectLang (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
     projectId INTEGER NOT NULL,
     langId INTEGER NOT NULL,
