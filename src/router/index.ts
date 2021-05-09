@@ -14,7 +14,7 @@ router.use('/', project)
 // router.use('/', page)
 router.get('/ttt', (req, res, next)=> {
     console.log('get ttt')
-    res.send('one okok rock')
+    res.send('one qkqkqk rock')
 })
 
 
