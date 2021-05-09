@@ -2,7 +2,6 @@ import express from 'express'
 import languageController from '../controller/language.controller'
 const router = express.Router()
 
-/* ........ stock ........*/
 const languageString = '/language'
 router.get(`${languageString}/:id`, (req, res, next)=> {
   languageController.get(req, res, next)

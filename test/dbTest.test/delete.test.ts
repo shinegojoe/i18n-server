@@ -14,7 +14,7 @@ class DeleteTester {
             id
         }
         q.tabName = tableName
-        const res = await sqliteHelper.deleteOne(q) as ISqliteResp
+        const res = await sqliteHelper.deleteMany(q) as ISqliteResp
         return res
     }
 

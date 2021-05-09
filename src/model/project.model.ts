@@ -15,6 +15,75 @@ class ProjectModel extends BaseSqliteModel {
     constructor(sqliteHelper: SqliteHelper, cfg: ISqlConfig) {
         super(sqliteHelper, cfg)
     }
+
+    async del(req: Request) {
+        // delete from projectLang
+
+        //find pages where projectId
+        // delete rows
+        // delete pages
+        // delete peoject
+
+        const db = this.sqliteHelper.connect()
+        var begin = db.prepare('BEGIN')
+        var commit = db.prepare('COMMIT')
+        var rollback = db.prepare('ROLLBACK')
+        const projectId = req.params.id
+
+        begin.run()
+        try {
+            const sql1 = 'DELETE from projectLang WHERE projectId = $id'
+            const q1 = {
+                id: parseInt(projectId)
+            }
+            const stmt1 = db.prepare(sql1)
+            const res1 = stmt1.run(q1)
+           
+
+            const sql2 = 'SELECT id from page WHERE projectId = $id'
+            const q2 = {
+                id: projectId
+            }
+            const stmt2 = db.prepare(sql2)
+            const res2 = stmt2.all(q2)
+            console.log(res2)
+
+            for (const item of res2) {
+                const sql3 = 'DELETE from row WHERE pageId = $id'
+                const q3 = {
+                    id: item.id
+                }
+                const stmt3 = db.prepare(sql3)
+                const res3 = stmt3.run(q3)
+
+                const sql4 = 'DELETE from page WHERE Id = $id'
+                const q4 = {
+                    id: item.id
+                }
+                const stmt4 = db.prepare(sql4)
+                const res4 = stmt4.run(q4)
+
+            }
+
+            const sql5 = 'DELETE from project WHERE id = $id'
+                const q5 = {
+                    id: projectId
+                }
+                const stmt5 = db.prepare(sql5)
+                const res = stmt5.run(q5)
+            
+            commit.run()
+            return res
+        } catch (e) {
+            throw e
+        }
+        finally {
+            if (db.inTransaction) {
+                rollback.run()
+            }
+            db.close()
+        }
+    }
 }
 
 export { ProjectModel, cfg }
