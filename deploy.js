@@ -6,7 +6,7 @@ var fs = require('fs');
 const params = dotenv.config({ path: path.resolve(__dirname, `production.env`) }).parsed
 // console.log(params)
 const url = `http://${params.HOST}:${params.PORT}/api/ttt`
-
+// 
 fs.readFile( __dirname + '/dist.tar', function (err, data) {
   if (err) {
     throw err; 
