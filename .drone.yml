@@ -4,8 +4,8 @@ type: docker
 
 steps:
   - name: server-test
-    # image: node:latest
-    image: node:12.22.1-alpine
+    image: node:latest
+    # image: node:12.22.1-alpine
     commands:
       - npm install
       - node src/tableInit.js
