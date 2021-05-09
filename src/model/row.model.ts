@@ -5,7 +5,7 @@ const cfg: ISqlConfig = {
     add: 'INSERT or IGNORE INTO row(text, langId, pageId, sortId) VALUES \
     ($text, $langId, $pageId, $sortId)',
     get: 'SELECT * from row WHERE id = $id',
-    list: 'SELECT * from row',
+    list: 'SELECT * from row WHERE pageId = $pageId',
     update: 'UPDATE row SET text = $text WHERE id = $id',
     del: 'DELETE from row WHERE id = $id',
     tableName: 'row'

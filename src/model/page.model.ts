@@ -6,7 +6,7 @@ import { Request } from 'express-serve-static-core'
 const cfg: ISqlConfig = {
     add: 'INSERT or IGNORE INTO page(name, projectId) VALUES ($name, $projectId)',
     get: 'SELECT * from page WHERE id = $id',
-    list: 'SELECT * from page',
+    list: 'SELECT * from page WHERE projectId = $projectId',
     update: 'UPDATE page SET name = $name WHERE id = $id',
     del: 'DELETE from page WHERE id = $id',
     tableName: 'page'
