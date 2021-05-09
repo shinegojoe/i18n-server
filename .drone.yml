@@ -13,13 +13,11 @@ steps:
       - sleep 10
       - npm run test
 
-  # - name: deploy-server
-  #   image: node:latest
-  #   commands:
-  #     # - bash test2.sh
-  #     - npm install axios
-  #     - npm run build
-  #     - tar cvf dist.tar dist
-  #     - node deploy.js
+  - name: deploy-server
+    image: node:latest
+    commands:
+      # - bash test2.sh
+      - npm install axios
+      - bash build.sh
 
   
