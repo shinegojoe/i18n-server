@@ -43,7 +43,7 @@ class ProjectModel extends BaseSqliteModel {
             }
             const stmt2 = db.prepare(sql2)
             const pageList = stmt2.all(q2)
-            // console.log(res2)
+            console.log('pageList', pageList)
             for(const page of pageList) {
                 // select rows
                 const sql = 'SELECT id from row WHERE pageId = $pageId'
@@ -51,10 +51,11 @@ class ProjectModel extends BaseSqliteModel {
                     pageId: page.id
                 }
                 const stmt = db.prepare(sql)
-                const rowList = stmt.run(q)
+                const rowList = stmt.all(q)
+                console.log('rowList', rowList)
                 for(const row of rowList) {
                     // delete text
-                    const sql = 'SELECT id from text WHERE rowId = $rowId'
+                    const sql = 'DELETE from text WHERE rowId = $rowId'
                     const q = {
                         rowId: row.id
                     }
@@ -62,7 +63,7 @@ class ProjectModel extends BaseSqliteModel {
                     const res = stmt.run(q)
 
                     // delete row
-                    const sql2 = 'SELECT id from row WHERE id = $rowId'
+                    const sql2 = 'DELETE from row WHERE id = $rowId'
                     const q2 = {
                         rowId: row.id
                     }
