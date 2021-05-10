@@ -26,6 +26,25 @@ class PageModel extends BaseSqliteModel {
 
         begin.run()
         try {
+            // select rows
+            const sql0 = 'SELECT id from row WHERE pageId = $pageId'
+            const q0 = {
+                pageId
+            }
+            const stmt = db.prepare(sql0)
+            const rowList = stmt.all(q0)
+
+            // delete text
+            for(const row of rowList) {
+                const sql = 'DELETE from text WHERE rowId = $rowId'
+                const q = {
+                    rowId: row.id
+                }
+                const stmt = db.prepare(sql)
+                const res = stmt.run(q)
+            }
+
+            // delete row
             const sql1 = 'DELETE from row WHERE pageId = $id'
             const q1 = {
                 id: parseInt(pageId)
@@ -33,6 +52,8 @@ class PageModel extends BaseSqliteModel {
             const stmt1 = db.prepare(sql1)
             const res1 =  stmt1.run(q1)
             console.log('res1', res1)
+
+            // delete page
             const sql2 = 'DELETE from page WHERE id = $id'
             const q2 = {
                 id: pageId

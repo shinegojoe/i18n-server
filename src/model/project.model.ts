@@ -17,12 +17,6 @@ class ProjectModel extends BaseSqliteModel {
     }
 
     async del(req: Request) {
-        // delete from projectLang
-
-        //find pages where projectId
-        // delete rows
-        // delete pages
-        // delete peoject
 
         const db = this.sqliteHelper.connect()
         var begin = db.prepare('BEGIN')
@@ -32,45 +26,66 @@ class ProjectModel extends BaseSqliteModel {
 
         begin.run()
         try {
+
+            // delete projectLang
             const sql1 = 'DELETE from projectLang WHERE projectId = $id'
             const q1 = {
                 id: parseInt(projectId)
             }
             const stmt1 = db.prepare(sql1)
             const res1 = stmt1.run(q1)
-           
 
+            
+            // select page list
             const sql2 = 'SELECT id from page WHERE projectId = $id'
             const q2 = {
                 id: projectId
             }
             const stmt2 = db.prepare(sql2)
-            const res2 = stmt2.all(q2)
-            console.log(res2)
-
-            for (const item of res2) {
-                const sql3 = 'DELETE from row WHERE pageId = $id'
-                const q3 = {
-                    id: item.id
+            const pageList = stmt2.all(q2)
+            // console.log(res2)
+            for(const page of pageList) {
+                // select rows
+                const sql = 'SELECT id from row WHERE pageId = $pageId'
+                const q = {
+                    pageId: page.id
                 }
-                const stmt3 = db.prepare(sql3)
-                const res3 = stmt3.run(q3)
+                const stmt = db.prepare(sql)
+                const rowList = stmt.run(q)
+                for(const row of rowList) {
+                    // delete text
+                    const sql = 'SELECT id from text WHERE rowId = $rowId'
+                    const q = {
+                        rowId: row.id
+                    }
+                    const stmt = db.prepare(sql)
+                    const res = stmt.run(q)
 
+                    // delete row
+                    const sql2 = 'SELECT id from row WHERE id = $rowId'
+                    const q2 = {
+                        rowId: row.id
+                    }
+                    const stmt2 = db.prepare(sql2)
+                    const res2 = stmt2.run(q2)
+                }
+                // delete page
                 const sql4 = 'DELETE from page WHERE Id = $id'
                 const q4 = {
-                    id: item.id
+                    id: page.id
                 }
                 const stmt4 = db.prepare(sql4)
                 const res4 = stmt4.run(q4)
 
             }
 
+            // delete project
             const sql5 = 'DELETE from project WHERE id = $id'
-                const q5 = {
-                    id: projectId
-                }
-                const stmt5 = db.prepare(sql5)
-                const res = stmt5.run(q5)
+            const q5 = {
+                id: projectId
+            }
+            const stmt5 = db.prepare(sql5)
+            const res = stmt5.run(q5)
             
             commit.run()
             return res
