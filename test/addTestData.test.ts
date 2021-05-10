@@ -46,19 +46,33 @@ const addLang = async() => {
     return res
 }
 
-const addRow = async(pageId: number, langId: number) => {
+const addRow = async(pageId: number) => {
     const rowData = {
-        text: `testRow_${getRN()}`,
+        name: `testRow_${getRN()}`,
         pageId,
-        langId,
         sortId: 1
     }
     const q = new SqliteQuery()
-    q.sql = 'INSERT or IGNORE INTO row(text, pageId, langId, sortId) VALUES \
-    ($text, $pageId, $langId, $sortId)'
+    q.sql = 'INSERT or IGNORE INTO row(name, pageId, sortId) VALUES \
+    ($name, $pageId, $sortId)'
     q.insertData = rowData
     const res = await sqliteHelper.insertOne(q)
     return res
+}
+
+const addText = async(langId: number, rowId: number) => {
+    const textData = {
+        text: `testText_${getRN()}`,
+        langId,
+        rowId
+    }
+    const q = new SqliteQuery()
+    q.sql = 'INSERT or IGNORE INTO text(text, rowId, langId) VALUES \
+    ($text, $rowId, $langId)'
+    q.insertData = textData
+    const res = await sqliteHelper.insertOne(q)
+    return res
+
 }
 
 const addProjectLang = async(projectId: number, langId: number) => {
@@ -79,13 +93,15 @@ const addTestData = async() => {
     // console.log('res', project)
     const page = await addPage(project.lastInsertRowid)
     const lang = await addLang()
-    const row = await addRow(page.lastInsertRowid, lang.lastInsertRowid)
+    const row = await addRow(page.lastInsertRowid)
+    const text = await addText(lang.lastInsertRowid, row.lastInsertRowid)
     const projectLang = await addProjectLang(project.lastInsertRowid, lang.lastInsertRowid)
     return {
         projectId: project.lastInsertRowid,
         pageId: page.lastInsertRowid,
         langId: lang.lastInsertRowid,
         rowId: row.lastInsertRowid,
+        textId: text.lastInsertRowid,
         projectLangId: projectLang.lastInsertRowid
     }
 

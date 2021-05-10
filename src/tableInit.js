@@ -40,20 +40,32 @@ const createLang = (db) => {
   console.log('lang table', res)
 }
 
-
 const createRow = (db) => {
   const sql = `CREATE TABLE row (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
-    text TEXT NOT NULL,
-    langId INTEGER NOT NULL,
+    name TEXT NOT NULL,
     pageId INTEGER NOT NULL,
     sortId INTEGER NOT NULL,
-    FOREIGN KEY("langId") REFERENCES "language"("id"),
     FOREIGN KEY("pageId") REFERENCES "page"("id")
-);`
+  );`
   const stmt = db.prepare(sql)
   const res = stmt.run()
   console.log('row table', res)
+}
+
+
+const createText = (db) => {
+  const sql = `CREATE TABLE text (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,  
+    text TEXT NOT NULL,
+    rowId INTEGER NOT NULL,
+    langId INTEGER NOT NULL,
+    FOREIGN KEY("rowId") REFERENCES "row"("id"),
+    FOREIGN KEY("langId") REFERENCES "language"("id")
+  );`
+  const stmt = db.prepare(sql)
+  const res = stmt.run()
+  console.log('text table', res)
 }
 
 const createProjectLang = (db) => {
@@ -83,6 +95,7 @@ const main = () => {
     createProject(db)
     createPage(db)
     createLang(db)
+    createText(db)
     createRow(db)
     createProjectLang(db)
     commit.run()
