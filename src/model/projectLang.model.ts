@@ -15,6 +15,10 @@ class ProjectLangModel extends BaseSqliteModel {
     constructor(sqliteHelper: SqliteHelper, cfg: ISqlConfig) {
         super(sqliteHelper, cfg)
     }
+
+    async add() {
+        // if lang exist, don't add
+    }
 }
 
 export { ProjectLangModel, cfg }

@@ -28,7 +28,7 @@ class LanguageModel extends BaseSqliteModel {
 
         begin.run()
         try {
-            const sql1 = 'DELETE from row WHERE langId = $id'
+            const sql1 = 'DELETE from text WHERE langId = $id'
             const q1 = {
                 id: parseInt(langId)
             }

@@ -33,7 +33,7 @@ const createPage = (db) => {
 const createLang = (db) => {
   const sql = `CREATE TABLE language (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  
-    name TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE
   );`
   const stmt = db.prepare(sql)
   const res = stmt.run()
