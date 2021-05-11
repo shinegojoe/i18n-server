@@ -8,6 +8,7 @@ const sqliteHelper = new SqliteHelper(dbPath)
 class RowController extends BaseController {
   constructor(model: RowModel) {
     super(model)
+
   }
 }
 

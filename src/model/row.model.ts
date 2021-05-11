@@ -12,6 +12,8 @@ const cfg: ISqlConfig = {
     tableName: 'row'
 }
 
+
+
 class RowModel extends BaseSqliteModel {
     constructor(sqliteHelper: SqliteHelper, cfg: ISqlConfig) {
         super(sqliteHelper, cfg)
