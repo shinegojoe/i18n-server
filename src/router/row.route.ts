@@ -33,5 +33,9 @@ router.post('/rowTextData', (req, res, next)=> {
     rowTextDataController.addNewRow(req, res, next)
 })
 
+router.delete('/rowTextData/:id', (req, res, next)=> {
+    rowTextDataController.delRow(req, res, next)
+})
+
 
 export default router

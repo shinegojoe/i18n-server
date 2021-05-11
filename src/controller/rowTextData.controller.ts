@@ -38,6 +38,17 @@ class RowTextDataController {
       next(e)
     }
   }
+
+  async delRow(req:Request, res: Response, next: NextFunction) {
+    try {
+      const data = await this.model.delRow(req)
+      const resp = this.respLayer.resp(data)
+      res.status(httpStatus.OK).json(resp)
+
+    } catch(e) {
+      next(e)
+    }
+  }
 }
 
 const controller = new RowTextDataController(model)
