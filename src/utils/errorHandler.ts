@@ -4,7 +4,7 @@ import { QueryResult } from '../helper/DBHelper/IQueryObj'
 import ServerResp from '../responseLayer/serverResp'
 
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log('err inla', err.name)
+  console.log('err inla', err.name, err.message)
   fileLogger.error(err.name);
   // const resp = new QueryResult({
   //   message: err.message
