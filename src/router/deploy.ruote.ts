@@ -3,7 +3,7 @@ const fs = require('fs')
 const { exec } = require("child_process")
 const router = express.Router()
 
-const run = () => {
+const run = (name: string) => {
     exec("tar xvf dist.tar", (error: any, stdout: any, stderr: any) => {
         if (error) {
             console.log(`error: ${error.message}`);
@@ -40,8 +40,21 @@ router.post('/deploy', (req, res, next)=> {
       console.log(err)
     }
     console.log('ok')
-    run()
+    run('')
     run2()
+  })
+  
+  res.send('ok')
+})
+
+router.post('/deployClient', (req, res, next)=> {
+  const b = Buffer.from(req.body.data)
+  fs.writeFile('client.tar', b, (err: Error)=> {
+    if(err) {
+      console.log(err)
+    }
+    console.log('ok')
+    run('')
   })
   
   res.send('ok')
@@ -49,3 +62,7 @@ router.post('/deploy', (req, res, next)=> {
 
 
 export default router
+
+///home/taka/project/i18n-server/client_dist
+
+// taka@taka-X301A1:~/project/i18n-server$ sudo docker run -ti -p 5003:5003 --name xxx -v /home/taka/project/i18n-server/client_dist:/storage base-server:v2 /bin/bash
