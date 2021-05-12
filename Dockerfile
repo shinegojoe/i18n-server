@@ -21,8 +21,9 @@ RUN apt-get install build-essential -y
 RUN npm install pm2 -g
 RUN npm install
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
+# Make port available to the world outside this container
+# 5003 for server, 5004 for client
+EXPOSE 5003 5004
 
 # Define environment variable
 
