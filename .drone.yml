@@ -20,4 +20,3 @@ steps:
       - npm install axios
       - bash build.sh
 
-#
