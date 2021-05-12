@@ -84,6 +84,7 @@ const createProjectLang = (db) => {
 
 const main = () => {
   const root = path.resolve(__dirname).replace('/src', '')
+  console.log('root', root)
 
   const dbPath = `${root}/testDB.db`
   const db = dbInit(dbPath)
