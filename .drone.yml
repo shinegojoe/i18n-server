@@ -3,21 +3,26 @@ name: i18n CI
 type: docker
 
 steps:
-  - name: server-test
-    image: node:latest
-    # image: node:12.22.1-alpine
-    commands:
-      - npm install
-      - node src/tableInit.js
-      # - npm run start:test
-      - sleep 10
-      - npm run test
+  # - name: server-test
+  #   image: node:latest
+  #   # image: node:12.22.1-alpine
+  #   commands:
+  #     - npm install
+  #     - node src/tableInit.js
+  #     # - npm run start:test
+  #     - sleep 10
+  #     - npm run test
 
+  # - name: deploy-server
+  #   image: node:latest
+  #   commands:
+  #     # - bash test2.sh
+  #     - npm install axios
+  #     - bash build.sh
   - name: deploy-server
     image: node:latest
     commands:
       # - bash test2.sh
-      - npm install axios
-      - bash build.sh
-
-#
+      - pwd
+      - cd ..
+      - pwd
