@@ -4,7 +4,7 @@ const { exec } = require("child_process")
 const router = express.Router()
 
 const run = (name: string) => {
-    exec("tar xvf dist.tar", (error: any, stdout: any, stderr: any) => {
+    exec(`tar xvf ${name}`, (error: any, stdout: any, stderr: any) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -40,7 +40,7 @@ router.post('/deploy', (req, res, next)=> {
       console.log(err)
     }
     console.log('ok')
-    run('')
+    run('dist.tar')
     run2()
   })
   
@@ -54,7 +54,7 @@ router.post('/deployClient', (req, res, next)=> {
       console.log(err)
     }
     console.log('ok')
-    run('')
+    run('client.tar')
   })
   
   res.send('ok')
