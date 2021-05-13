@@ -4,13 +4,15 @@ var axios = require('axios')
 var fs = require('fs');
 
 const params = dotenv.config({ path: path.resolve(__dirname, `production.env`) }).parsed
+// const params = dotenv.config({ path: path.resolve(__dirname, `development.env`) }).parsed
+
 // console.log(params)
 
 
 const deployServer = () => {
   const url = `http://${params.HOST}:${params.PORT}/api/deploy`
   // 
-  fs.readFile( __dirname + '/dist.tar', function (err, data) {
+  fs.readFile( __dirname + '/dist.tar.gz', function (err, data) {
     if (err) {
       throw err; 
     }
