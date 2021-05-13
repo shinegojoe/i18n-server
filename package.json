@@ -9,7 +9,7 @@
     "build": "tsc",
     "b2": "npm run build && NODE_ENV=production node ./dist/index.js",
     "b4": "npm run build && NODE_ENV=production pm2 start --name i18n-server ./dist/index.js",
-    "restart": "NODE_ENV=production pm2 restart i18n-server",
+    "restart": "npm run build && NODE_ENV=production pm2 restart i18n-server",
 
     "start:test": "NODE_ENV=development ts-node ./src/index.ts &",
     "test": "mocha -r dotenv/config --require ts-node/register test/*.ts",
