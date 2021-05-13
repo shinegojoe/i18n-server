@@ -24,5 +24,7 @@ steps:
     commands:
       # - bash test2.sh
       - pwd
+      - ls
       - cd ..
       - pwd
+      - ls
