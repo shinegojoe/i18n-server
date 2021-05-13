@@ -1,3 +1,3 @@
 npm run build
-tar cvf dist.tar dist
+tar -zcvf dist.tar dist
 node deploy.js

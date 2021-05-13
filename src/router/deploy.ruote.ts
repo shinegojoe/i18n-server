@@ -4,7 +4,7 @@ const { exec } = require("child_process")
 const router = express.Router()
 
 const run = (name: string) => {
-    exec(`tar xvf ${name}`, (error: any, stdout: any, stderr: any) => {
+    exec(`tar -xzvf ${name}`, (error: any, stdout: any, stderr: any) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -34,13 +34,13 @@ const run2 = () => {
 router.post('/deploy', (req, res, next)=> {
   // console.log(req.body)
  
-  const b = Buffer.from(req.body.data)
-  fs.writeFile('dist.tar', b, (err: Error)=> {
+  const b = Buffer.from(req.body.data, 'binary')
+  fs.writeFile('dist.tar.gz', b, (err: Error)=> {
     if(err) {
       console.log(err)
     }
     console.log('ok')
-    run('dist.tar')
+    run('dist.tar.gz')
     run2()
   })
   
@@ -49,12 +49,13 @@ router.post('/deploy', (req, res, next)=> {
 
 router.post('/deployClient', (req, res, next)=> {
   const b = Buffer.from(req.body.data)
-  fs.writeFile('client.tar', b, (err: Error)=> {
+  // console.log(req.body.data)
+  fs.writeFile('client.tar.gz', b, (err: Error)=> {
     if(err) {
       console.log(err)
     }
     console.log('ok')
-    run('client.tar')
+    run('client.tar.gz')
   })
   
   res.send('ok')

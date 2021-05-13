@@ -15,7 +15,7 @@ const deployServer = () => {
       throw err; 
     }
     // console.log(data)
-    const dataString = data.toString()
+    const dataString = data.toString('binary')
   
     const deploy = axios.post(url, {data: dataString})
     deploy.then(()=> {
