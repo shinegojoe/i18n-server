@@ -33,15 +33,15 @@ const run2 = () => {
 
 router.post('/deploy', (req, res, next)=> {
   // console.log(req.body)
- 
+  const fileName = 'server.tar.gz'
   const b = Buffer.from(req.body.data, 'binary')
-  fs.writeFile('dist.tar.gz', b, (err: Error)=> {
+  fs.writeFile(fileName, b, (err: Error)=> {
     if(err) {
       console.log(err)
     }
     console.log('ok')
-    run('dist.tar.gz')
-    run2()
+    run(fileName)
+    // run2()
   })
   
   res.send('ok')

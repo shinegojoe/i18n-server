@@ -19,7 +19,7 @@ router.use('/', deploy)
 
 router.get('/test', (req, res, next)=> {
     console.log('get test')
-    res.send('one qkqkqkq rock')
+    res.send('one qk rock')
 })
 
 export default router
