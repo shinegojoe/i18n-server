@@ -1,0 +1,1 @@
+sudo docker run --name i18n-server -ti -d -p 5003:5003 -p 5004:5004 -v /home/taka/project/deploy/i18n-server:/app/storage -v/home/taka/project/deploy/gtts:/app/gtts i18n-server:latest

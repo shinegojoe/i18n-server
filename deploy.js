@@ -26,7 +26,7 @@ const deployServer = () => {
       method: 'POST',
       url: url,
       data: {data: dataString},
-      params: { name: 'i18nServer' }
+      params: { name: 'i18n-server' }
     })
 
     deploy.then(()=> {
