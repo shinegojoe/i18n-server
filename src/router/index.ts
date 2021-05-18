@@ -5,6 +5,7 @@ import page from './page.route'
 import row from './row.route'
 import text from './text.route'
 import projectLang from './projectLang.route'
+import download from './download.route'
 import deploy from './deploy.ruote'
 
 
@@ -16,6 +17,7 @@ router.use('/', page)
 router.use('/', row)
 router.use('/', text)
 router.use('/', projectLang)
+router.use('/', download)
 router.use('/', deploy)
 
 router.get('/test', (req, res, next)=> {
